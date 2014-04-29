@@ -1,4 +1,4 @@
-# Mutants control room
+# Mutant control room
 
 
 This is a small demo application using some basic ruby on rails technics. It is bases on the folllow *requirementsi*:
