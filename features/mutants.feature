@@ -34,6 +34,7 @@ Scenario: Abandon mutant
 Scenario: Assign a mutant to a team
   Given I have mutants "Wolverine, Storm"
   And I have teams "Team 1"
+  And I am on the start page
   When I assign mutant "Wolverine" to team "Team 1"
   Then I see "Wolverine is assigned to Team 1"
   And I have 1 mutant in team "Team 1"

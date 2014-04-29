@@ -4,6 +4,7 @@
       %th Mutant name 
       %th Real name
       %th Special Abilities
+      %th On Team
       %th
   %tbody
   - mutants.each do |mutant| 
@@ -11,4 +12,8 @@
       %td= mutant.mutant_name
       %td= mutant.real_name
       %td= mutant.special_abilities
+      %td
+        = form_for mutant do |f|
+          = f.select :team_id, [['---', 0]] + teams.map{ |t| [t.name,t.id] }
+          = f.submit "assign team"
       %td= link_to "abandon #{mutant.mutant_name}", mutant_path(mutant), method: :delete

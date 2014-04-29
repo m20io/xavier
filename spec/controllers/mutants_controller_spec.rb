@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe MutantsController do
-
+  let(:storm) { Mutant.create(mutant_name: 'Storm', special_abilities: 'Make wind') }
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
@@ -41,16 +41,28 @@ describe MutantsController do
     end
   end
 
+  describe "patch 'update'" do
+    it 'changes the mutants team' do
+      team = Team.create(name: "Aplha Team")
+      patch :update, { id: storm.id, mutant: { team_id: team.id } }
+      expect(assigns(:mutant).team).to eql team
+    end
+
+    it 'changes nothing else' do
+      patch :update, { id: storm.id, mutant: { mutant_name: 'other name' } }
+      expect(assigns(:mutant).mutant_name).to eql storm.mutant_name
+    end
+  end
+
   describe "delete 'destroy'" do
     it "returns http success" do
-      mutant = Mutant.create(mutant_name: 'Storm', special_abilities: 'Make wind')
-      delete :destroy, id: mutant.id
-      expect(Mutant.exists? mutant.id ).to be_falsey
+      
+      delete :destroy, id: storm.id
+      expect(Mutant.exists? storm.id ).to be_falsey
     end
 
     it 'redirect to the url' do
-      mutant = Mutant.create(mutant_name: 'Storm', special_abilities: 'Make wind')
-      delete :destroy, id: mutant.id
+      delete :destroy, id: storm.id
       expect(response).to redirect_to root_url
     end
   end

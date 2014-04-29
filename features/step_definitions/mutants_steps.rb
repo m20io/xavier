@@ -44,9 +44,14 @@ Given(/^I have teams "(.*?)"$/) do |teams|
 end
 
 When(/^I assign mutant "(.*?)" to team "(.*?)"$/) do |mutant_name, team_name|
-  
+  mutant = Mutant.find_by_mutant_name(mutant_name)
+  within(:css, "form#edit_mutant_#{mutant.id}") do
+    select(team_name)
+    click_button 'assign team'
+  end
 end
 
-Then(/^I have (\d+) mutant in team "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Then(/^I have (\d+) mutant in team "(.*?)"$/) do |count, team_name|
+  team = Team.find_by_name(team_name)
+  expect(team.mutants.count).to eql count.to_i
 end
