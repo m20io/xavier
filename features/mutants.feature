@@ -10,8 +10,8 @@ Scenario: Create a valid mutant
   Given I have no mutants
   And I am on the start page
   When I follow "discover mutant"
-  And I fill "mutant name" with "Wolverine"
-  And I fill "ability description" with "Fast healing, adamantium skeleton, retractable claw"
+  And I fill "Mutant name" with "Wolverine"
+  And I fill "Special abilities" with "Fast healing, adamantium skeleton, retractable claw"
   And I press "create mutant record"
   Then I see "mutant recorded for Wolverine created"
   And I see "Wolverine"
@@ -26,8 +26,9 @@ Scenario: List mutants
 
 Scenario: Abandon mutant
   Given I have mutants "Pyro"
-  When I abandon mutant "Pryo"
-  Then I see "Pryo is no longer a X-Men"
+  And I am on the start page
+  When I abandon mutant "Pyro"
+  Then I see "Pyro is no longer a X-Men"
   And I have 0 mutants
 
 Scenario: Assign a mutant to a team

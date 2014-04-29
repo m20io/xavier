@@ -1,0 +1,10 @@
+%h2 Hello Prof. Xavier
+
+%h2 Your Mutants
+#mutants
+  = render partial: 'mutants_list', locals: { mutants: @mutants }
+
+%h2 
+  Sidebar
+
+%p= link_to 'discover mutant', new_mutant_path 

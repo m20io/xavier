@@ -1,0 +1,14 @@
+%table
+  %thead
+    %tr
+      %th Mutant name 
+      %th Real name
+      %th Special Abilities
+      %th
+  %tbody
+  - mutants.each do |mutant| 
+    %tr
+      %td= mutant.mutant_name
+      %td= mutant.real_name
+      %td= mutant.special_abilities
+      %td= link_to "abandon #{mutant.mutant_name}", mutant_path(mutant), method: :delete
