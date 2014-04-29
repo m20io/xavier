@@ -7,12 +7,17 @@ This is a small demo application using some basic ruby on rails technics. It is 
 
 If you like to try it, you need ruby 2.1.1 and can just clone and run:
 
-> bundle install
-> rails s thin start
+
+```
+bundle install
+rails s thin start
+```
 
 And if you to get an overview of the application this will show you something:
 
-> cucumber features
+```
+cucumber features
+```
 
 
 
