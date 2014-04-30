@@ -6,7 +6,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    - flash.each do |name, msg|
-      = content_tag :div, msg, class: name
-    = yield
-
+    .row
+      .large-12
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class:[ name, 'alert-box' ]
+    .row
+      .large-10.small-12.columns
+        = yield
+      .large-2.small-12.columns
+        = yield :sidebar

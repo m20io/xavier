@@ -1,19 +1,20 @@
 %h2 Hello Prof. Xavier
 
-%h2 Your Mutants
+%h4 Your Mutants
 #mutants
   = render partial: 'mutants_list', locals: { mutants: @mutants, teams: @teams }
 
-%h2 Your Teams
+%h4 Your Teams
 #teams
   = render partial: 'teams_list', locals: { teams: @teams }
 
-%h2 Current Task
+%h4 Current Task
 #task
   = render partial: 'tasks_list', locals: { tasks: @tasks, teams: @teams }
 
-%h2
-  Sidebar
-%p= link_to 'discover mutant', new_mutant_path
-%p= link_to 'create team', new_team_path
-%p= link_to 'create task', new_task_path
+= content_for :sidebar do
+  %h6.subheader Available actions
+  .panel.radius
+    %p= link_to 'discover mutant', new_mutant_path
+    %p= link_to 'create team', new_team_path
+    %p= link_to 'create task', new_task_path
