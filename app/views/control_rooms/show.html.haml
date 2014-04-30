@@ -4,7 +4,16 @@
 #mutants
   = render partial: 'mutants_list', locals: { mutants: @mutants, teams: @teams }
 
-%h2 
-  Sidebar
+%h2 Your Teams
+#teams
+  = render partial: 'teams_list', locals: { teams: @teams }
 
-%p= link_to 'discover mutant', new_mutant_path 
+%h2 Current Task
+#task
+  = render partial: 'tasks_list', locals: { tasks: @tasks, teams: @teams }
+
+%h2
+  Sidebar
+%p= link_to 'discover mutant', new_mutant_path
+%p= link_to 'create team', new_team_path
+%p= link_to 'create task', new_task_path

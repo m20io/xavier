@@ -24,4 +24,5 @@ group :text, :development do
   gem 'simplecov', '~> 0.7.1'
   gem 'guard-rspec', '~> 4.2.7'  #, require: false
   gem 'guard-cucumber'
+  gem 'rails_best_practices'
 end

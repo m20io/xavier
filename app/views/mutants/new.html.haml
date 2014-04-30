@@ -1,10 +1,17 @@
 %h1 Enter Mutant record
 %p Plase enter the inforamtion about the newly discovered mutant
 
+- if @mutant.errors.any?
+  #error_explanation
+  %h2= pluralize(@mutant.errors.countm "error") + "prohibited this post from being saved:"
+  %ul
+    - @mutant.errors.full_messages.each do |message|
+      %li= message
+
 = form_for @mutant do |f|
   = f.label :mutant_name
   = f.text_field :mutant_name
   = f.label :special_abilities
   = f.text_field :special_abilities, placeholder: 'Please enter the abilities sperated with \',\''
   = f.submit 'create mutant record'
-  
+

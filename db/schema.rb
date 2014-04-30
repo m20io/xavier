@@ -11,15 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429161256) do
+ActiveRecord::Schema.define(version: 20140429225140) do
 
   create_table "mutants", force: true do |t|
     t.string   "mutant_name"
-    t.string   "special_abilities", default: "--- {}\n"
+    t.string   "special_abilities"
     t.string   "real_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "team_id"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "description"
+    t.datetime "due_date"
+    t.integer  "team_id"
+    t.boolean  "completed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|

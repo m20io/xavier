@@ -31,7 +31,7 @@ class MutantsController < ApplicationController
     redirect_to root_url
   end
 
-  private 
+  private
   def mutant_team
     params.require(:mutant).permit(:team_id)
   end

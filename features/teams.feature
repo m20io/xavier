@@ -4,32 +4,26 @@ Feature:
   I want to create and manage teams
 
 Background:
-  Given PENDING I am Prof. Xavier
+  Given I am Prof. Xavier
 
 Scenario: Create a valid team
   Given I have no teams
   And I am on the start page
   When I follow "create team"
-  And I fill "team name" with "Team one"
+  And I fill "Name" with "Alpha Team"
   And I press "create team"
-  Then I see "Team one created"
+  Then I see "Team Alpha Team created."
   And I have 1 team
 
 Scenario: List the teams
-  Given I have teams "Team one, Team two"
+  Given I have teams "Alpha Team, Beta Team"
   And I am on the start page
-  Then I see "Team one, Team two"
+  Then I see "Alpha Team"
+  And I see "Beta Team"
 
 Scenario: Dissolve a team
-  Given I have teams "Team one"
+  Given I have teams "Alpha Team"
   And I am on the start page
-  And I follow "dissolve Team one"
-  Then I see "Team one dissolve"
+  When I dissolve team "Alpha Team"
+  Then I see "Team 'Alpha Team' has been dissolved."
   And I have 0 teams
-
-Scenario: Assign a task to a team
-  Given I have teams "Team one"
-  And I have one task "Catch magneto"
-  And I am on the start page
-  And I assign task "Catch magneto" to team "Team one"
-  And I have 1 team for task "Catch magneto"

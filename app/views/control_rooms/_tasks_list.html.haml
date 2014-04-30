@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %th Description
+      %th Due Date
+      %th Assigned Team
+      %th
+  %tbody
+  - tasks.each do |task|
+    %tr{:class => ("completed" if task.completed?)}
+      %td= task.description
+      %td= task.due_date
+      %td
+        = form_for task do |f|
+          = f.select :team_id, [['---', 0]] + teams.map{ |t| [t.name,t.id] }
+          = f.submit "assign team"
+      %td= button_to "complete", task_path(task), { method: :patch, name: 'commit' } unless task.completed?
+      %td= link_to "delete", task_path(task), method: :delete

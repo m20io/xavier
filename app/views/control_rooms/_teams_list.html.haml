@@ -1,0 +1,14 @@
+%table
+  %thead
+    %tr
+      %th Team name
+      %th Team Members
+      %th
+  %tbody
+    - teams.each do |team|
+      %tr
+        %td= team.name
+        %td= team.mutants.map(&:mutant_name).join(', ')
+        %td
+        %td
+          = link_to "dissolve", team_path(team), method: :delete

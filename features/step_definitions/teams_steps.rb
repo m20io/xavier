@@ -1,23 +1,23 @@
 Given(/^I have no teams$/) do
-  pending # express the regexp above with the code you wish you had
+  Team.delete_all
 end
 
-Then(/^I have (\d+) team$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^I have (\d+) teams$/) do |team_names|
+  team_names.split(',').each { |tn| Team.create(name: tn) }
 end
 
-Then(/^I have (\d+) teams$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I dissolve team "(.*?)"$/) do |team_name|
+  find(:xpath, "//tr[contains(.,'#{team_name}')]/td/a", text: 'dissolve').click
 end
 
-Given(/^I have one task "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^I have tasks "(.*?)"$/) do |task_descriptions|
+  task_descriptions.split(',').each do |description|
+    Task.create(description: description, due_date: Date.tomorrow)
+  end
 end
 
-Given(/^I assign task "(.*?)" to team "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Then(/^I have (\d+) team$/) do |count|
+  expect(Team.count).to eql count.to_i
 end
 
-Given(/^I have (\d+) team for task "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
-end
+

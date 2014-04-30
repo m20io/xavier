@@ -20,6 +20,6 @@ describe Mutant do
   end
 
   it 'returns nothing for the team name if no team is present' do
-    expect(rogue.team_name).to eql ''
+    expect(rogue.team_name).to eql nil
   end
 end

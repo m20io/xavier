@@ -7,12 +7,13 @@ Background:
   Given I am Prof. Xavier
 
 Scenario: Create a valid task
-  Given I have on tasks
+  Given I have no tasks
   And I am on the start page
   When I follow "create task"
-  And I fill "task name" with "Catch Magneto"
+  And I fill "Description" with "Catch Magneto"
   And I select due date as tomorrow
-  Then I see "task Catch Magneto created"
+  And I press "create task"
+  Then I see "Task Catch Magneto created"
   And I have 1 tasks
 
 Scenario: List task
@@ -20,12 +21,16 @@ Scenario: List task
   And I am on the start page
   Then I see "Catch Magneto"
   And I see "Buy milk"
-  And I see "Catch Magneto" is due before "Buy milk"
+
+Scenario: Assign a task to a team
+  Given I have teams "Alpha Team"
+  And I have tasks "Catch magneto"
+  And I am on the start page
+  When I assign task "Catch magneto" to team "Alpha Team"
+  Then I have 1 team for task "Catch magneto"
 
 Scenario: Complete task
   Given I have tasks "Catch Magneto"
   And I am on the start page
-  When I follow "completed"
+  When I press "complete"
   Then I see "Task Catch Magneto is completed"
-  And I see "Catch Magneto" is crossed out
-  And I see the tasks are sorted by there due date with the closest
